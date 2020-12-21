@@ -23,7 +23,6 @@ const getSimple = function (url, obj, callback) {
 
     let options = {
         host: process.env.BINACE_BASE_URL,
-        headers: {"X-MBX-APIKEY": process.env.BKEY},
         path: url + '?' + dataQueryString
     };
     return req(options, callback)
