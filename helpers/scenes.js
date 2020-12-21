@@ -18,7 +18,7 @@ class SceneGenerator {
     genAlertsScene() {
         const alertScene = new Scene('alerts');
         alertScene.enter(async (ctx) => {
-            this.overallAlertData.chatid = ctx.message.chat.id;
+            this.overallAlertData.chatId = ctx.message.chat.id;
             await ctx.reply("HI you are going to create alert for pairs");
             await ctx.scene.enter('alert-pair-name');
         });

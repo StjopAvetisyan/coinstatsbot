@@ -8,16 +8,16 @@ const chatAlerts = [
     //         {name: 'BNTBTC', isUp: true, price: '22940'},
     //     ]
     // },
-    {
-        chatId: 635569038, alerts: [
-            {name: 'LTCBTC', isUp: false, price: '0.01471700'},
-            {name: 'BNBBTC', isUp: true, price: '0.01134890'},
-            {name: 'NEOBTC', isUp: true, price: '22940'},
-            {name: 'BNTBTC', isUp: true, price: '22940'},
-        ],
-        alertsOn:true
-
-    },
+    // {
+    //     chatId: 635569038, alerts: [
+    //         {name: 'LTCBTC', isUp: false, price: '0.01471700'},
+    //         {name: 'BNBBTC', isUp: true, price: '0.01134890'},
+    //         {name: 'NEOBTC', isUp: true, price: '22940'},
+    //         {name: 'BNTBTC', isUp: true, price: '22940'},
+    //     ],
+    //     alertsOn:false
+    //
+    // },
 
 
 ];
@@ -62,13 +62,14 @@ const getAlertedPairs = function () {
     return result
 
 };
-const addAlert = function (chatId,alert) {
-   let  user = chatAlerts.find(obj=>obj.chatId === chatId);
+const addAlert = function ( alert) {
+   let  user = chatAlerts.find(obj=>obj.chatId === alert.chatId);
+
     if (user)
     {
-        user.alerts.push(alert)
+        user.alerts.push({name: alert.name, isUp: alert.isUp, price:alert.price})
     }
-    else chatAlerts.push( { chatId:chatId , alerts: [alert] })
+    else chatAlerts.push( { chatId:alert.chatId , alertsOn: true, alerts: [{name: alert.name, isUp: alert.isUp, price:alert.price}] })
 };
 const toggleAlertForChat = function (chatId) {
    chatAlerts.find(obj=>obj.chatId===chatId).alertsOn = !chatAlerts.find(obj=>obj.chatId===chatId).alertsOn;
